@@ -9,7 +9,7 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	return (
-		<div>
+		<div className="app-container">
 			Hello world vs Alfie &amp; Hoi dan IT
 			<MyComponent />
 		</div>
