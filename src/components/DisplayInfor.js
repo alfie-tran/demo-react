@@ -4,7 +4,7 @@ import React from 'react';
 
 class DisplayInfor extends React.Component {
 	state = {
-		isShowListUsers: <small class="text-muted">faded secondary text</small>,
+		isShowListUsers: true,
 	};
 	handleShowHide = () => {
 		this.setState({

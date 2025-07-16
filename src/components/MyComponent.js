@@ -3,7 +3,7 @@
 //DRY: don't repeat yourself - đừng lặp lại chính mình
 
 import React from 'react';
-import UserInfor from './UserInfor';
+import AddUserInfor from './AddUserInfor';
 import DisplayInfor from './DisplayInfor';
 class MyComponent extends React.Component {
 	state = {
@@ -13,10 +13,18 @@ class MyComponent extends React.Component {
 			{ id: 3, name: 'Nancy', age: '18' },
 		],
 	};
+
+	handleAddNewUser = (userObj) => {
+		console.log('>>>Check data from parent: ', userObj);
+		this.setState({
+			listUsers: [userObj, ...this.state.listUsers],
+		});
+	};
+
 	render() {
 		return (
 			<div>
-				<UserInfor />
+				<AddUserInfor handleAddNewUser={this.handleAddNewUser} />
 				<br />
 				<br />
 				<DisplayInfor listUsers={this.state.listUsers} />
