@@ -1,20 +1,16 @@
 import './App.scss';
 import Header from './components/Header/Header';
-import { Link } from 'react-router-dom'; //thu vien dieu huong nguoi dung
+import { Link, Outlet } from 'react-router-dom'; //thu vien dieu huong nguoi dung
 const App = () => {
 	return (
-		<div className="App">
-			<Header />
-			<div>
-				test link
-				<div>
-					<button>
-						{/* Link to: dieu huong nguoi dung. Ben trong thu vien da co ham event.preventDefault cho nen no ko can reload lai chuong trinh*/}
-						<Link to="/users">Go to User page</Link>
-					</button>
-					<button>
-						<Link to="/admins">Go to Admin page</Link>
-					</button>
+		<div className="app-container">
+			<div className="header-container">
+				<Header />
+			</div>
+			<div className="main-container">
+				<div className="sidenav-container"></div>
+				<div className="app-content">
+					<Outlet />
 				</div>
 			</div>
 		</div>
