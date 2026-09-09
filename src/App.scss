@@ -9,13 +9,9 @@ body {
 }
 .app-container {
 	.header-container {
-		//Cach code nay la cua css
-		// .navbar-nav .nav-link.active {
-		// 	color: red;
-		// }
-
-		//cach code cua scss:
 		.navbar-nav {
+			z-index: 10; //z-index: muc do xep chong len nhau cua cac phan tu. Phan tu nao co z-index cao hon se hien thi tren phan tu co z-index thap hon
+			opacity: 0.6; //muc do trong suot cua navbar
 			.nav-link {
 				&.active {
 					//& tuong trung cho ngang hang voi thang nav-link
@@ -24,4 +20,10 @@ body {
 			}
 		}
 	}
+}
+
+video {
+	position: fixed;
+	bottom: 0;
+	width: 100vw;
 }
