@@ -3,6 +3,10 @@ import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, Side
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
 
+import { DiReact } from 'react-icons/di';
+import { MdDashboardCustomize } from 'react-icons/md';
+import './SideBar.scss';
+
 const SideBar = (props) => {
 	const { image, collapsed, toggled, handleToggleSidebar } = props;
 	return (
@@ -27,41 +31,22 @@ const SideBar = (props) => {
 							whiteSpace: 'nowrap',
 						}}
 					>
-						Hoi dan IT
+						<DiReact size={'2em'} color={'00bfff'} />
+						<span>Hoi dan IT</span>
 					</div>
 				</SidebarHeader>
 
 				<SidebarContent>
 					<Menu iconShape="circle">
-						<MenuItem icon={<FaTachometerAlt />} suffix={<span className="badge red">New</span>}>
-							dashboard
+						<MenuItem icon={<MdDashboardCustomize />} suffix={<span className="badge red">New</span>}>
+							Dashboard
 						</MenuItem>
-						<MenuItem icon={<FaGem />}> components</MenuItem>
 					</Menu>
 					<Menu iconShape="circle">
-						<SubMenu suffix={<span className="badge yellow">3</span>} icon={<FaRegLaughWink />}>
-							<MenuItem> 1</MenuItem>
-							<MenuItem> 2</MenuItem>
-							<MenuItem> 3</MenuItem>
-						</SubMenu>
-
-						<SubMenu prefix={<span className="badge gray">3</span>} icon={<FaHeart />}>
-							<MenuItem> 1</MenuItem>
-							<MenuItem> 2</MenuItem>
-							<MenuItem> 3</MenuItem>
-						</SubMenu>
-						<SubMenu icon={<FaList />}>
-							<MenuItem> 2 </MenuItem>
-							<MenuItem> 1 </MenuItem>
-							<SubMenu>
-								<MenuItem>3.1 </MenuItem>
-								<MenuItem>3.2 </MenuItem>
-								<SubMenu>
-									<MenuItem> 3.3.1 </MenuItem>
-									<MenuItem> 3.3.2 </MenuItem>
-									<MenuItem> 3.3.3 </MenuItem>
-								</SubMenu>
-							</SubMenu>
+						<SubMenu icon={<FaGem />} title="Features">
+							<MenuItem> Quản lý Users</MenuItem>
+							<MenuItem> Quản lý Bài Quiz</MenuItem>
+							<MenuItem> Quản lý Câu hỏi</MenuItem>
 						</SubMenu>
 					</Menu>
 				</SidebarContent>
@@ -74,13 +59,13 @@ const SideBar = (props) => {
 						}}
 					>
 						<a
-							href="https://github.com/azouaoui-med/react-pro-sidebar"
+							href="https://github.com/alfie-tran/demo-react"
 							target="_blank"
 							className="sidebar-btn"
 							rel="noopener noreferrer"
 						>
 							<FaGithub />
-							<span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>viewSource</span>
+							<span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>View Source</span>
 						</a>
 					</div>
 				</SidebarFooter>
