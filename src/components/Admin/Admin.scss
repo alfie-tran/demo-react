@@ -1,10 +1,20 @@
 .admin-container {
 	display: flex;
 	flex-direction: row;
-	gap: 20px;
 	.admin-sidebar {
 		.pro-sidebar {
 			height: 100vh !important; //cao tuong thich voi man hinh may tinh cua minh
+		}
+	}
+
+	.admin-content {
+		width: 100%;
+		.admin-header {
+			height: 40px;
+			border: 1px solid green;
+		}
+		.admin-main {
+			border: 1px solid red;
 		}
 	}
 }
