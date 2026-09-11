@@ -7,15 +7,73 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+@media (min-width: 1400px) {
+	.container,
+	.container-lg,
+	.container-md,
+	.container-sm,
+	.container-xl,
+	.container-xxl {
+		max-width: 1450px !important;
+	}
+}
 .app-container {
 	.header-container {
-		.navbar-nav {
+		.btn-login {
+			border-radius: 5px;
+			margin-right: 15px;
+			padding: 0 15px;
+			border: 1px solid #535353;
+			height: 40px;
+		}
+		.btn-signup {
+			border-radius: 5px;
+			background: #303030;
+			color: white;
+			padding: 0 15px;
+			height: 40px;
+			&.hover {
+				background: black;
+			}
+		}
+		.navbar {
+			padding: 20px;
+
 			z-index: 10; //z-index: muc do xep chong len nhau cua cac phan tu. Phan tu nao co z-index cao hon se hien thi tren phan tu co z-index thap hon
-			opacity: 0.6; //muc do trong suot cua navbar
+			background-color: rgba(0, 0, 0, 0) !important; //r là red, g là green, b là blue, a là alpha (độ trong suốt)
 			.nav-link {
 				&.active {
 					//& tuong trung cho ngang hang voi thang nav-link
 					color: #00bfff;
+				}
+			}
+		}
+	}
+	.homepage-container {
+		.homepage-content {
+			position: relative; //de co the dat cac phan tu con ben trong no theo toa do tuy y
+			padding: 100px;
+			width: 50%;
+			display: flex; //flexbox la mot kieu hien thi cac phan tu con ben trong no theo chieu ngang hoac doc
+			flex-direction: column; //cac phan tu con ben trong no se hien thi theo chieu doc
+			gap: 20px; //khoang cach giua cac phan tu con ben trong no
+			.title-1 {
+				font-size: 50px;
+				font-weight: 600;
+			}
+			.title-2 {
+				font-size: 25px;
+			}
+			.title-3 {
+				button {
+					border-radius: 5px;
+					background: #303030;
+					color: white;
+					padding: 0 15px;
+					height: 40px;
+					&.hover {
+						background: black;
+					}
 				}
 			}
 		}
