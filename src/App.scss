@@ -42,7 +42,7 @@ body {
 			z-index: 10; //z-index: muc do xep chong len nhau cua cac phan tu. Phan tu nao co z-index cao hon se hien thi tren phan tu co z-index thap hon
 			background-color: rgba(0, 0, 0, 0) !important; //r là red, g là green, b là blue, a là alpha (độ trong suốt)
 			.nav-link {
-				&.active {
+				&:active {
 					//& tuong trung cho ngang hang voi thang nav-link
 					color: #00bfff;
 				}
@@ -72,7 +72,7 @@ body {
 					padding: 0 15px;
 					height: 40px;
 					border: none; //xoa vien cua button
-					&.hover {
+					&:hover {
 						background: black;
 					}
 				}
@@ -82,7 +82,7 @@ body {
 }
 
 video {
-	position: fixed;
+	position: fixed; //video se duoc dat o vi tri co dinh tren man hinh, khong bi anh huong boi cuon trang
 	bottom: 0;
 	width: 100vw;
 }
