@@ -2,12 +2,20 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc';
+import axios from 'axios';
 
-const ModalCreateUser = () => {
-	const [show, setShow] = useState(false);
+const ModalCreateUser = (props) => {
+	const { show, setShow } = props;
 
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	const handleClose = () => {
+		setShow(false);
+		setEmail('');
+		setPassword('');
+		setUsername('');
+		setRole('USER');
+		setImage('');
+		setPreviewImage('');
+	};
 
 	//dinh nghia cac state cho reat kiem soat cac input trong form
 	const [email, setEmail] = useState('');
@@ -28,12 +36,34 @@ const ModalCreateUser = () => {
 		}
 		console.log('>>> check file upload: ', event.target.files[0]);
 	};
+
+	const handleSubmitCreateUser = async () => {
+		//validate: lam sau
+
+		//call apis
+		// let data = {
+		// 	email: email,
+		// 	password: password,
+		// 	username: username,
+		// 	role: role,
+		// 	userImage: image,
+		// };
+		// alert('Click me');
+		// console.log(data);
+
+		//Gửi file lên phía server dùng FormData
+		const data = new FormData();
+		data.append('email', email);
+		data.append('password', password);
+		data.append('username', username);
+		data.append('role', role);
+		data.append('userImage', image);
+
+		let res = await axios.post('http://localhost:8081/api/v1/participant', data);
+		console.log('>>> check res: ', res);
+	};
 	return (
 		<>
-			<Button variant="primary" onClick={handleShow}>
-				Launch demo modal
-			</Button>
-
 			<Modal size="xl" show={show} onHide={handleClose} backdrop={false} className="modal-add-user">
 				<Modal.Header closeButton>
 					<Modal.Title>Add new Users</Modal.Title>
@@ -105,7 +135,7 @@ const ModalCreateUser = () => {
 					<Button variant="secondary" onClick={handleClose}>
 						Close
 					</Button>
-					<Button variant="primary" onClick={handleClose}>
+					<Button variant="primary" onClick={() => handleSubmitCreateUser()}>
 						Save
 					</Button>
 				</Modal.Footer>
