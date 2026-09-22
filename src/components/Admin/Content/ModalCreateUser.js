@@ -4,6 +4,8 @@ import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc';
 import axios from 'axios';
 
+import { toast } from 'react-toastify';
+
 const ModalCreateUser = (props) => {
 	const { show, setShow } = props;
 
@@ -36,21 +38,29 @@ const ModalCreateUser = (props) => {
 		}
 		console.log('>>> check file upload: ', event.target.files[0]);
 	};
+	//dùng Regular Expression - Regex
+	const validateEmail = (email) => {
+		return String(email)
+			.toLowerCase()
+			.match(
+				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			);
+	};
 
 	const handleSubmitCreateUser = async () => {
-		//validate: lam sau
-
+		//validate:
+		const isValidEmail = validateEmail(email);
+		if (!isValidEmail) {
+			// alert('>>>invalid email');
+			// toast.info | toast.success
+			toast.error('Invalid Email');
+			return;
+		}
+		if (!password) {
+			toast.error('Invalid Password');
+			return;
+		}
 		//call apis
-		// let data = {
-		// 	email: email,
-		// 	password: password,
-		// 	username: username,
-		// 	role: role,
-		// 	userImage: image,
-		// };
-		// alert('Click me');
-		// console.log(data);
-
 		//Gửi file lên phía server dùng FormData
 		const data = new FormData();
 		data.append('email', email);
@@ -60,7 +70,15 @@ const ModalCreateUser = (props) => {
 		data.append('userImage', image);
 
 		let res = await axios.post('http://localhost:8081/api/v1/participant', data);
-		console.log('>>> check res: ', res);
+		console.log('>>> check res: ', res.data);
+		//neu tao thanh cong se dong form lai
+		if (res.data && res.data.EC === 0) {
+			toast.success(res.data.EM);
+			handleClose();
+		}
+		if (res.data && res.data.EC !== 0) {
+			toast.error(res.data.EM);
+		}
 	};
 	return (
 		<>
