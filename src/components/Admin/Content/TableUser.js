@@ -1,38 +1,25 @@
-import { useEffect, useState } from 'react';
-import { getAllUsers } from '../../../services/apiService';
 const TableUser = (props) => {
-	const [listUser, setListUser] = useState([]);
+	//B1: de render ra mang tren man hinh ==> useState
+	const { listUsers } = props;
 
-	//useEffect <=> componentDidMount trong class (chỉ gọi 1 lần duy nhất): Nhưng nó theo dõi và cập nhật liên tục.
-	useEffect(() => {
-		fetchListUsers();
-	}, []); //mang rong tuc la bao cho React chi chay ham nay 1 lan duy nhat.
-
-	const fetchListUsers = async () => {
-		let res = await getAllUsers();
-		// console.log('>>> get list user: ', res);
-		if (res.EC === 0) {
-			setListUser(res.DT);
-		}
-	};
 	return (
 		<>
 			<table className="table table-hover table-bordered">
 				<thead>
 					<tr>
-						<th scope="col">No</th>
+						<th scope="col">ID</th>
 						<th scope="col">UserName</th>
 						<th scope="col">Email</th>
 						<th scope="col">Role</th>
 					</tr>
 				</thead>
 				<tbody>
-					{listUser &&
-						listUser.length > 0 &&
-						listUser.map((item, index) => {
+					{listUsers &&
+						listUsers.length > 0 &&
+						listUsers.map((item, index) => {
 							return (
 								<tr key={`table-user-${index}`}>
-									<td>{index + 1}</td>
+									<td>{item.id}</td>
 									<td>{item.username}</td>
 									<td>{item.email}</td>
 									<td>{item.role}</td>
@@ -45,7 +32,7 @@ const TableUser = (props) => {
 							);
 						})}
 
-					{listUser && listUser.length === 0 && (
+					{listUsers && listUsers.length === 0 && (
 						<tr>
 							<td colSpan={'4'}>Not found data</td>
 						</tr>

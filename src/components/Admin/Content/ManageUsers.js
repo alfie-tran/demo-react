@@ -1,10 +1,28 @@
 import ModalCreateUser from './ModalCreateUser';
 import './ManageUsers.scss';
 import { FcPlus } from 'react-icons/fc';
-import { useState } from 'react';
 import TableUser from './TableUser';
+import { useEffect, useState } from 'react';
+import { getAllUsers } from '../../../services/apiService';
 const ManageUsers = (props) => {
 	const [showModalCreateUsers, setShowModalCreateUsers] = useState(false);
+
+	//B1: de render ra mang tren man hinh ==> useState
+	const [listUsers, setListUsers] = useState([]);
+
+	//B2: goi API
+	//useEffect <=> componentDidMount trong class (chỉ gọi 1 lần duy nhất): Nhưng nó theo dõi và cập nhật liên tục.
+	useEffect(() => {
+		fetchListUsers();
+	}, []); //mang rong tuc la bao cho React chi chay ham nay 1 lan duy nhat.
+
+	//B3 cap nhat lai state cho DS user
+	const fetchListUsers = async () => {
+		let res = await getAllUsers();
+		if (res.EC === 0) {
+			setListUsers(res.DT);
+		}
+	};
 	return (
 		<div className="manage-user-container">
 			<div className="title">Manage Users</div>
@@ -16,10 +34,14 @@ const ManageUsers = (props) => {
 					</button>
 				</div>
 				<div className="table-users-container">
-					<TableUser />
+					<TableUser listUsers={listUsers} />
 				</div>
 
-				<ModalCreateUser show={showModalCreateUsers} setShow={setShowModalCreateUsers} />
+				<ModalCreateUser
+					show={showModalCreateUsers}
+					setShow={setShowModalCreateUsers}
+					fetchListUsers={fetchListUsers}
+				/>
 			</div>
 		</div>
 	);
