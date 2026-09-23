@@ -10,6 +10,10 @@ const postCreateNewUser = (email, password, username, role, image) => {
 	data.append('userImage', image);
 	return axios.post('api/v1/participant', data);
 };
+
+const getAllUsers = () => {
+	return axios.get('api/v1/participant/all');
+};
 // export default postCreateNewUser; La cach goi thong thuong
 //minh muon export ra nhieu bien de sau nay dung Them/ Xoa/ Sua
-export { postCreateNewUser };
+export { postCreateNewUser, getAllUsers };
