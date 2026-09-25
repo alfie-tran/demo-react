@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc';
 
 import { toast } from 'react-toastify';
-import { postCreateNewUser } from '../../../services/apiService';
+import { putUpdateUser } from '../../../services/apiService';
 import _ from 'lodash'; //thu vien dung kiem tra data
 const ModalUpdateUser = (props) => {
 	const { show, setShow, dataUpdate } = props;
@@ -17,6 +17,7 @@ const ModalUpdateUser = (props) => {
 		setRole('USER');
 		setImage('');
 		setPreviewImage('');
+		props.resetUpdateUser(); //goi ham reset de sau khi cap nhat roi thi co the cap nhat tiep
 	};
 
 	//dinh nghia cac state cho reat kiem soat cac input trong form
@@ -71,13 +72,9 @@ const ModalUpdateUser = (props) => {
 			toast.error('Invalid Email');
 			return;
 		}
-		if (!password) {
-			toast.error('Invalid Password');
-			return;
-		}
 
 		//call apis
-		let data = await postCreateNewUser(email, password, username, role, image);
+		let data = await putUpdateUser(dataUpdate.id, username, role, image);
 		// console.log('>>> Component res: ', data);
 		//neu tao thanh cong se dong form lai
 		if (data && data.EC === 0) {

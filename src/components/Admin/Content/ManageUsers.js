@@ -26,10 +26,16 @@ const ManageUsers = (props) => {
 			setListUsers(res.DT);
 		}
 	};
+
 	const handleClickBtnUpdate = (user) => {
 		setShowModalUpdateUser(true);
 		// console.log('>>>Update user: ', user);
 		setDataUpdate(user);
+	};
+
+	//reset data sau khi da update roi va tiep tuc update tiep
+	const resetUpdateUser = () => {
+		setDataUpdate({});
 	};
 	return (
 		<div className="manage-user-container">
@@ -50,7 +56,13 @@ const ManageUsers = (props) => {
 					setShow={setShowModalCreateUsers}
 					fetchListUsers={fetchListUsers}
 				/>
-				<ModalUpdateUser show={showModalUpdateUser} setShow={setShowModalUpdateUser} dataUpdate={dataUpdate} />
+				<ModalUpdateUser
+					show={showModalUpdateUser}
+					setShow={setShowModalUpdateUser}
+					dataUpdate={dataUpdate}
+					fetchListUsers={fetchListUsers}
+					resetUpdateUser={resetUpdateUser}
+				/>
 			</div>
 		</div>
 	);
