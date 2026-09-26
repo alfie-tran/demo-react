@@ -3,11 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc';
 
-import { toast } from 'react-toastify';
-import { putUpdateUser } from '../../../services/apiService';
 import _ from 'lodash'; //thu vien dung kiem tra data
-const ModalUpdateUser = (props) => {
-	const { show, setShow, dataUpdate } = props;
+
+const ModalViewUser = (props) => {
+	const { show, setShow, dataView } = props;
 
 	const handleClose = () => {
 		setShow(false);
@@ -17,7 +16,6 @@ const ModalUpdateUser = (props) => {
 		setRole('USER');
 		setImage('');
 		setPreviewImage('');
-		props.resetUpdateUser(); //goi ham reset de sau khi cap nhat roi thi co the cap nhat tiep
 	};
 
 	//dinh nghia cac state cho reat kiem soat cac input trong form
@@ -30,67 +28,23 @@ const ModalUpdateUser = (props) => {
 
 	useEffect(() => {
 		//kiem tra data co rong hay ko? ==> thu vien lodash: npm install --save-exact lodash@4.17.21
-		if (!_.isEmpty(dataUpdate)) {
+		if (!_.isEmpty(dataView)) {
 			//cap nhat lai state
-			setEmail(dataUpdate.email);
-			setUsername(dataUpdate.username);
-			setRole(dataUpdate.role);
+			setEmail(dataView.email);
+			setUsername(dataView.username);
+			setRole(dataView.role);
 			setImage(''); //ko can update vi can phai gui file len phia server
-			if (dataUpdate.image) {
-				setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
+			if (dataView.image) {
+				setPreviewImage(`data:image/jpeg;base64,${dataView.image}`);
 			}
 		}
-	}, [dataUpdate]); //ham useEffect chỉ chạy khi đã update dữ liệu.
-
-	const handleUploadImage = (event) => {
-		//neu user upload anh thi moi cap nhat. nguoc lai ko upload anh thi cho bien bang null
-		if (event.target && event.target.files && event.target.files[0]) {
-			// cap nhat lai gia tri cho bien previewImage => setPreviewImage
-			setPreviewImage(URL.createObjectURL(event.target.files[0]));
-			setImage(event.target.files[0]);
-		} else {
-			// 	setPreviewImage('');
-		}
-		console.log('>>> check file upload: ', event.target.files[0]);
-	};
-	//dùng Regular Expression - Regex
-	const validateEmail = (email) => {
-		return String(email)
-			.toLowerCase()
-			.match(
-				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-			);
-	};
-
-	const handleSubmitCreateUser = async () => {
-		//validate:
-		const isValidEmail = validateEmail(email);
-		if (!isValidEmail) {
-			// alert('>>>invalid email');
-			// toast.info | toast.success
-			toast.error('Invalid Email');
-			return;
-		}
-
-		//call apis
-		let data = await putUpdateUser(dataUpdate.id, username, role, image);
-		// console.log('>>> Component res: ', data);
-		//neu tao thanh cong se dong form lai
-		if (data && data.EC === 0) {
-			toast.success(data.EM);
-			handleClose();
-			await props.fetchListUsers(); //sau khi dong tab User roi thi cho thang con goi nguoc len thang cha.
-		}
-		if (data && data.EC !== 0) {
-			toast.error(data.EM);
-		}
-	};
+	}, [dataView]); //ham useEffect chỉ chạy khi đã update dữ liệu.
 
 	return (
 		<>
 			<Modal size="xl" show={show} onHide={handleClose} backdrop={false} className="modal-add-user">
 				<Modal.Header closeButton>
-					<Modal.Title>Update a User</Modal.Title>
+					<Modal.Title>Profile</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<form className="row g-3">
@@ -145,9 +99,9 @@ const ModalUpdateUser = (props) => {
 								type="file"
 								id="labelUpload"
 								hidden
-								onChange={(event) => {
-									handleUploadImage(event);
-								}}
+								// onChange={(event) => {
+								// 	handleUploadImage(event);
+								// }}
 							/>
 						</div>
 						<div className="col-md-12 img-preview">
@@ -159,12 +113,9 @@ const ModalUpdateUser = (props) => {
 					<Button variant="secondary" onClick={handleClose}>
 						Close
 					</Button>
-					<Button variant="primary" onClick={() => handleSubmitCreateUser()}>
-						Save
-					</Button>
 				</Modal.Footer>
 			</Modal>
 		</>
 	);
 };
-export default ModalUpdateUser;
+export default ModalViewUser;

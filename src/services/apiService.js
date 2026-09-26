@@ -23,6 +23,11 @@ const putUpdateUser = (id, username, role, image) => {
 	data.append('userImage', image);
 	return axios.put('api/v1/participant', data);
 };
+
+const getViewUser = (id) => {
+	return axios.get(`api/v1/participant/${id}`);
+};
+
 // export default postCreateNewUser; La cach goi thong thuong
 //minh muon export ra nhieu bien de sau nay dung Them/ Xoa/ Sua
-export { postCreateNewUser, getAllUsers, putUpdateUser };
+export { postCreateNewUser, getAllUsers, putUpdateUser, getViewUser };
