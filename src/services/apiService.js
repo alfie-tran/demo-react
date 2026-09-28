@@ -24,10 +24,13 @@ const putUpdateUser = (id, username, role, image) => {
 	return axios.put('api/v1/participant', data);
 };
 
-const getViewUser = (id) => {
-	return axios.get(`api/v1/participant/${id}`);
+const getViewUser = (userId) => {
+	return axios.get('api/v1/participant', { id: userId });
 };
 
+const deleteUser = (userId) => {
+	return axios.delete('api/v1/participant', { data: { id: userId } });
+};
 // export default postCreateNewUser; La cach goi thong thuong
 //minh muon export ra nhieu bien de sau nay dung Them/ Xoa/ Sua
-export { postCreateNewUser, getAllUsers, putUpdateUser, getViewUser };
+export { postCreateNewUser, getAllUsers, putUpdateUser, getViewUser, deleteUser };

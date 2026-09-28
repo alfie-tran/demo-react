@@ -16,6 +16,7 @@ const ModalViewUser = (props) => {
 		setRole('USER');
 		setImage('');
 		setPreviewImage('');
+		props.resetDataUser(); //reset lai data sau moi lan click nut View
 	};
 
 	//dinh nghia cac state cho reat kiem soat cac input trong form
@@ -42,7 +43,7 @@ const ModalViewUser = (props) => {
 
 	return (
 		<>
-			<Modal size="xl" show={show} onHide={handleClose} backdrop={false} className="modal-add-user">
+			<Modal size="xl" show={show} onHide={handleClose} backdrop="static" className="modal-add-user">
 				<Modal.Header closeButton>
 					<Modal.Title>Profile</Modal.Title>
 				</Modal.Header>

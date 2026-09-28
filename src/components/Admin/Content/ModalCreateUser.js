@@ -75,7 +75,7 @@ const ModalCreateUser = (props) => {
 	};
 	return (
 		<>
-			<Modal size="xl" show={show} onHide={handleClose} backdrop={false} className="modal-add-user">
+			<Modal size="xl" show={show} onHide={handleClose} backdrop="static" className="modal-add-user">
 				<Modal.Header closeButton>
 					<Modal.Title>Add new Users</Modal.Title>
 				</Modal.Header>

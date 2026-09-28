@@ -88,7 +88,7 @@ const ModalUpdateUser = (props) => {
 
 	return (
 		<>
-			<Modal size="xl" show={show} onHide={handleClose} backdrop={false} className="modal-add-user">
+			<Modal size="xl" show={show} onHide={handleClose} backdrop="static" className="modal-add-user">
 				<Modal.Header closeButton>
 					<Modal.Title>Update a User</Modal.Title>
 				</Modal.Header>
