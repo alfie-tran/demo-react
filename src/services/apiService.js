@@ -31,6 +31,10 @@ const getViewUser = (userId) => {
 const deleteUser = (userId) => {
 	return axios.delete('api/v1/participant', { data: { id: userId } });
 };
+
+const getUserWithPaginate = (page, limit) => {
+	return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
+};
 // export default postCreateNewUser; La cach goi thong thuong
 //minh muon export ra nhieu bien de sau nay dung Them/ Xoa/ Sua
-export { postCreateNewUser, getAllUsers, putUpdateUser, getViewUser, deleteUser };
+export { postCreateNewUser, getAllUsers, putUpdateUser, getViewUser, deleteUser, getUserWithPaginate };
