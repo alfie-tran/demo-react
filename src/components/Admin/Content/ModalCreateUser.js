@@ -50,7 +50,6 @@ const ModalCreateUser = (props) => {
 		//validate:
 		const isValidEmail = validateEmail(email);
 		if (!isValidEmail) {
-			// alert('>>>invalid email');
 			// toast.info | toast.success
 			toast.error('Invalid Email');
 			return;
@@ -62,12 +61,13 @@ const ModalCreateUser = (props) => {
 
 		//call apis
 		let data = await postCreateNewUser(email, password, username, role, image);
-		// console.log('>>> Component res: ', data);
+
 		//neu tao thanh cong se dong form lai
 		if (data && data.EC === 0) {
 			toast.success(data.EM);
 			handleClose();
-			await props.fetchListUsers(); //sau khi dong tab User roi thi cho thang con goi nguoc len thang cha.
+			props.setCurrentPage(1);
+			await props.fetchListUsersWithPaginate(1); //sau khi dong tab User roi thi cho thang con goi nguoc len thang cha.
 		}
 		if (data && data.EC !== 0) {
 			toast.error(data.EM);

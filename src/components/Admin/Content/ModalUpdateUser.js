@@ -79,7 +79,7 @@ const ModalUpdateUser = (props) => {
 		if (data && data.EC === 0) {
 			toast.success(data.EM);
 			handleClose();
-			await props.fetchListUsers(); //sau khi dong tab User roi thi cho thang con goi nguoc len thang cha.
+			await props.fetchListUsersWithPaginate(props.currentPage); //sau khi dong tab User roi thi cho thang con goi nguoc len thang cha voi Page hien tai
 		}
 		if (data && data.EC !== 0) {
 			toast.error(data.EM);

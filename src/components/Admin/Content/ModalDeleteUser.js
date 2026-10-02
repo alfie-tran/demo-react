@@ -13,7 +13,9 @@ const ModalDeleteUser = (props) => {
 		if (data && data.EC === 0) {
 			toast.success(data.EM);
 			handleClose();
-			await props.fetchListUsers(); //goi lai api de lay DS user moi
+
+			props.setCurrentPage(1); //cap nhat lai trang
+			await props.fetchListUsersWithPaginate(1); //goi lai api de lay DS user moi
 		}
 		if (data && data.EC !== 0) {
 			toast.error(data.EM);

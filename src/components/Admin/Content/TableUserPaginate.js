@@ -9,6 +9,7 @@ const TableUserPaginate = (props) => {
 	const handlePageClick = (event) => {
 		// event.selected la chuoi string cho nen ep kieu ==> +event.selected de tra ra kq: int
 		props.fetchListUsersWithPaginate(+event.selected + 1);
+		props.setCurrentPage(+event.selected + 1); //moi 1 lan cap nhat xong ta se setCurrentPage de cap nhat lai trang hien tai. Vi khi nguoi dung click vao 1 trang nao do thi se goi lai API va lay DS user moi.
 		console.log(`User requested page number ${event.selected}`);
 	};
 	return (
@@ -84,6 +85,7 @@ const TableUserPaginate = (props) => {
 					breakLinkClassName="page-link"
 					activeClassName="active"
 					disabledClassName="disabled"
+					forcePage={props.currentPage - 1} //forcePage tính trang từ 0 nên phải trừ đi 1
 				/>
 			</div>
 		</>

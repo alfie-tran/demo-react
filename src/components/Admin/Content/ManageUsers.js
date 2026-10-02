@@ -10,8 +10,10 @@ import ModalViewUser from './ModalViewUser';
 import ModalDeleteUser from './ModalDeleteUser';
 
 const ManageUsers = (props) => {
-	const LIMIT_USER = 6; //Cho hien thi SL user la 6
+	const LIMIT_USER = 3; //Cho hien thi SL user la 6
 	const [pageCount, setPageCount] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
+
 	const [showModalCreateUsers, setShowModalCreateUsers] = useState(false);
 
 	const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
@@ -99,6 +101,8 @@ const ManageUsers = (props) => {
 						handleClickBtnDelete={handleClickBtnDelete}
 						fetchListUsersWithPaginate={fetchListUsersWithPaginate}
 						pageCount={pageCount}
+						currentPage={currentPage}
+						setCurrentPage={setCurrentPage}
 					/>
 				</div>
 
@@ -106,12 +110,18 @@ const ManageUsers = (props) => {
 					show={showModalCreateUsers}
 					setShow={setShowModalCreateUsers}
 					fetchListUsers={fetchListUsers} //goi lai DS User
+					fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+					currentPage={currentPage}
+					setCurrentPage={setCurrentPage}
 				/>
 				<ModalUpdateUser
 					show={showModalUpdateUser}
 					setShow={setShowModalUpdateUser}
 					dataUpdate={dataUpdate}
 					fetchListUsers={fetchListUsers}
+					fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+					currentPage={currentPage}
+					setCurrentPage={setCurrentPage}
 					resetUpdateUser={resetUpdateUser}
 				/>
 				<ModalViewUser
@@ -125,6 +135,9 @@ const ManageUsers = (props) => {
 					setShow={setShowModalDeleteUser}
 					dataDelete={dataDelete}
 					fetchListUsers={fetchListUsers}
+					fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+					currentPage={currentPage}
+					setCurrentPage={setCurrentPage}
 				/>
 			</div>
 		</div>
