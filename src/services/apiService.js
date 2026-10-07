@@ -35,6 +35,16 @@ const deleteUser = (userId) => {
 const getUserWithPaginate = (page, limit) => {
 	return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
 };
+
+//Cach viet 1:
+// const postLogin = (useEmail, usePassword) => {
+// 	return axios.post('api/v1/login', { email: useEmail, password: usePassword });
+// };
+
+//Cach viet 2:
+const postLogin = (email, password) => {
+	return axios.post('api/v1/login', { email, password });
+};
 // export default postCreateNewUser; La cach goi thong thuong
 //minh muon export ra nhieu bien de sau nay dung Them/ Xoa/ Sua
-export { postCreateNewUser, getAllUsers, putUpdateUser, getViewUser, deleteUser, getUserWithPaginate };
+export { postCreateNewUser, getAllUsers, putUpdateUser, getViewUser, deleteUser, getUserWithPaginate, postLogin };

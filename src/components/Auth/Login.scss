@@ -2,8 +2,18 @@
 	.header {
 		height: 45px;
 		text-align: right;
+		padding: 10px 100px 0 100px;
+		button {
+			margin-left: 10px;
+			padding: 3px 10px;
+			border-radius: 5px;
+			background-color: #f9f9f9; //reset
+			border: 1px solid;
 
-		border: 1px solid red;
+			&:hover {
+				background-color: white;
+			}
+		}
 	}
 	.title {
 		padding: 20px 0;
@@ -21,9 +31,10 @@
 		gap: 15px;
 		button {
 			width: 100%;
-			margin-top: 10px;
+			// margin-top: 10px;
 		}
-		.form-group {
+		.back {
+			cursor: pointer;
 		}
 	}
 }

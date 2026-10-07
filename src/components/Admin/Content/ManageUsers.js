@@ -10,7 +10,7 @@ import ModalViewUser from './ModalViewUser';
 import ModalDeleteUser from './ModalDeleteUser';
 
 const ManageUsers = (props) => {
-	const LIMIT_USER = 3; //Cho hien thi SL user la 6
+	const LIMIT_USER = 6; //Cho hien thi SL user la 6
 	const [pageCount, setPageCount] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 

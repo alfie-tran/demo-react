@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink } from 'react-router-dom'; //Link: thu vien dieu huong nguoi dung
-import { useNavigate } from 'react-router'; //useNavigate: hook dieu huong nguoi dung
+import { useNavigate } from 'react-router-dom'; //useNavigate: hook dieu huong nguoi dung
 const Header = () => {
 	const navigate = useNavigate();
 	const handleLogin = () => {
