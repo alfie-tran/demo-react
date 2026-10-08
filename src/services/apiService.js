@@ -45,6 +45,20 @@ const getUserWithPaginate = (page, limit) => {
 const postLogin = (email, password) => {
 	return axios.post('api/v1/login', { email, password });
 };
+
+const postRegister = (email, password) => {
+	return axios.post('api/v1/register', { email, password });
+};
+
 // export default postCreateNewUser; La cach goi thong thuong
 //minh muon export ra nhieu bien de sau nay dung Them/ Xoa/ Sua
-export { postCreateNewUser, getAllUsers, putUpdateUser, getViewUser, deleteUser, getUserWithPaginate, postLogin };
+export {
+	postRegister,
+	postCreateNewUser,
+	getAllUsers,
+	putUpdateUser,
+	getViewUser,
+	deleteUser,
+	getUserWithPaginate,
+	postLogin,
+};

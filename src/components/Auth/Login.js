@@ -3,14 +3,31 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; //useNavigate: hook dieu huong nguoi dung
 import { postLogin } from '../../services/apiService';
 import { toast } from 'react-toastify';
+
 const Login = (props) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const navigate = useNavigate();
-
+	//dung regex de validate email
+	const validateEmail = (email) => {
+		return String(email)
+			.toLowerCase()
+			.match(
+				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			);
+	};
 	const handleLogin = async () => {
 		// validate
+		const isValidEmail = validateEmail(email);
+		if (!isValidEmail) {
+			toast.error('Invalid Email');
+			return;
+		}
 
+		if (!password) {
+			toast.error('Invalid Password');
+			return;
+		}
 		//submit api
 		let data = await postLogin(email, password);
 		if (data && data.EC === 0) {
@@ -25,7 +42,7 @@ const Login = (props) => {
 		<div className="login-container">
 			<div className="header">
 				<span>Don't have an account yet?</span>
-				<button type="button" className="">
+				<button type="button" className="" onClick={() => navigate('/register')}>
 					Sign up
 				</button>
 			</div>
